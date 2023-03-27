@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AutocompleteService } from './autocomplete.service';
+import { SymbolService } from './symbol.service';
 
 describe('AutocompleteService', () => {
-  let service: AutocompleteService;
+  let service: SymbolService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AutocompleteService);
+    service = TestBed.inject(SymbolService);
   });
 
   it('should be created', () => {

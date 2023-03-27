@@ -1,0 +1,27 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Форма для формул</mat-label>
+    <input
+      class="autocomplete-input"
+      type="text" matInput
+      matTooltip="{{ operatorsTooltip }}"
+      [matTooltipPosition]="'above'"
+      [matTooltipDisabled]="isTooltipDisabled"
+      [matTooltipHideDelay]="5000"
+      autocomplete="disable"
+      id="input"
+      [matAutocomplete]="auto"
+      [formControl]="myControl"
+    >
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let operator of mathFilteredFunctionsArray$ | async"
+                  matTooltip="{{ mathMethodsAndConstantsTooltip }}"
+                  matTooltipHideDelay="0"
+                  [matTooltipPosition]="'below'"
+                  (mouseover)="transferMessageToDropdownTooltip($event)"
+                  [value]="normalizeInputValue(operator)">
+        {{ operator }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
