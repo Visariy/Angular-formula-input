@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from "./app.component";
-import { FormulaInputModule } from "./module/formulaInput.module";
+import { FormulaInputModule } from "./formulaInput/module/formulaInput.module";
 
 
 @NgModule({
