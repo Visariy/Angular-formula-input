@@ -1,5 +1,5 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import { SymbolService } from "../services/symbolService/symbol.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SymbolService } from "../services/symbol.service";
 import { autocompleteData } from "../types/datatypes";
 import { debounceTime, Observable, fromEvent, Subscription } from "rxjs";
 import { map } from "rxjs/operators"
@@ -8,11 +8,11 @@ import { FormControl } from "@angular/forms";
 
 
 @Component({
-  selector: 'app-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss']
+  selector: 'component-formula-input',
+  templateUrl: './formulaInput.component.html',
+  styleUrls: ['./formulaInput.component.scss']
 })
-export class AutocompleteComponent implements OnInit, OnDestroy {
+export class FormulaInputComponent implements OnInit, OnDestroy {
 
   mathMethodsAndConstants: autocompleteData;
 
@@ -36,7 +36,7 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
 
   myControl = new FormControl();
 
-  mathFilteredFunctionsArray$!: Observable<string[]>;
+  mathFilteredMethodsAndConstantsArray$!: Observable<string[]>;
 
   operatorsTooltip: string = '';
 
@@ -44,9 +44,9 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
 
   mathMethodsAndConstantsTooltip = '';
 
-  private mathFunctionFiler() {
+  private mathMethodsAndConstantsFilter() {
 
-    this.mathFilteredFunctionsArray$ = this.myControl.valueChanges
+    this.mathFilteredMethodsAndConstantsArray$ = this.myControl.valueChanges
 
       .pipe(
 
@@ -151,13 +151,12 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
       return this.myControl.value + operator;
 
     }
-
   }
 
 
   ngOnInit() {
 
-    this.mathFunctionFiler();
+    this.mathMethodsAndConstantsFilter();
 
     this.keyListener();
 

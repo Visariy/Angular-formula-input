@@ -9,12 +9,11 @@
       [matTooltipDisabled]="isTooltipDisabled"
       [matTooltipHideDelay]="5000"
       autocomplete="disable"
-      id="input"
       [matAutocomplete]="auto"
       [formControl]="myControl"
     >
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let operator of mathFilteredFunctionsArray$ | async"
+      <mat-option *ngFor="let operator of mathFilteredMethodsAndConstantsArray$ | async"
                   matTooltip="{{ mathMethodsAndConstantsTooltip }}"
                   matTooltipHideDelay="0"
                   [matTooltipPosition]="'below'"

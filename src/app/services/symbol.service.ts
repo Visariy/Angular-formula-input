@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { autocompleteData } from "../../types/datatypes";
+import { autocompleteData } from "../types/datatypes";
 
 
 @Injectable({
