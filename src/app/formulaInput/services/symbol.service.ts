@@ -83,7 +83,7 @@ export class SymbolService {
     {name: 'NULL', message: 'Значение отсутствует'},
   ]
 
-  getMathMethods(): autocompleteData {
+  getMathMethodsAndConstants(): autocompleteData {
     return this.mathMethodsAndConstants
   }
 

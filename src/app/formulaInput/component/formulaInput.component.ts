@@ -22,7 +22,7 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
 
   constructor(private autoCompleteService: SymbolService) {
 
-    this.mathMethodsAndConstants = this.autoCompleteService.getMathMethods();
+    this.mathMethodsAndConstants = this.autoCompleteService.getMathMethodsAndConstants();
 
     this.operators = this.autoCompleteService.getOperators();
 
@@ -64,9 +64,9 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
     const filterValue = name.toUpperCase();
 
     return arr.filter(value => value.name.toUpperCase().includes(filterValue))
-    
+
       .map(value => value.name);
-    
+
   }
 
   transferMessageToDropdownTooltip(event: MouseEvent) {
@@ -129,7 +129,7 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
       while(this.doubleOperatorsArrayForCompute.length > 2) {
 
         this.doubleOperatorsArrayForCompute.pop();
-        
+
       }
     }
 
