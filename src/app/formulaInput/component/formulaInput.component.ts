@@ -108,10 +108,10 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
 
         this.operatorsTooltip = operator.message;
 
-          setTimeout(() => {
-            this.isTooltipDisabled = true
-          }, 5000)
-
+        setTimeout(() => {
+          this.isTooltipDisabled = true
+        }, 5000)
+        
         return
       }
     }
