@@ -44,6 +44,16 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
 
   mathMethodsAndConstantsTooltip = '';
 
+  private filterDropdownOptions(name: string, arr: autocompleteData): string[] {
+
+    const filterValue = name.toUpperCase();
+
+    return arr.filter(value => value.name.toUpperCase().includes(filterValue))
+
+      .map(value => value.name);
+
+  }
+
   private mathMethodsAndConstantsFilter() {
 
     this.mathFilteredMethodsAndConstantsArray$ = this.myControl.valueChanges
@@ -57,16 +67,6 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
         map(name => this.filterDropdownOptions(name, this.mathMethodsAndConstants))
 
       );
-  }
-
-  private filterDropdownOptions(name: string, arr: autocompleteData): string[] {
-
-    const filterValue = name.toUpperCase();
-
-    return arr.filter(value => value.name.toUpperCase().includes(filterValue))
-
-      .map(value => value.name);
-
   }
 
   transferMessageToDropdownTooltip(event: MouseEvent) {
@@ -108,29 +108,35 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
 
         this.operatorsTooltip = operator.message;
 
+          setTimeout(() => {
+            this.isTooltipDisabled = true
+          }, 5000)
+
+        return
       }
     }
   }
 
   private computeOperatorsTooltip(key: string, arr: autocompleteData, secondArr: autocompleteData) {
 
-    if(key.length === 1) {
+    if(key.length <= 1) {
 
       this.doubleOperatorsArrayForCompute.push(key);
 
     }
 
-    if(this.doubleOperatorsArrayForCompute.length >= 2) {
+    while(this.doubleOperatorsArrayForCompute.length > 2) {
+
+      this.doubleOperatorsArrayForCompute.pop();
+
+    }
+
+    if(this.doubleOperatorsArrayForCompute.length === 2) {
 
       this.doubleOperatorsArrayForCompute[0] = this.doubleOperatorsArrayForCompute[1];
 
       this.doubleOperatorsArrayForCompute[1] = key;
 
-      while(this.doubleOperatorsArrayForCompute.length > 2) {
-
-        this.doubleOperatorsArrayForCompute.pop();
-
-      }
     }
 
     const doubleKey = this.doubleOperatorsArrayForCompute.join('');
@@ -149,13 +155,12 @@ export class FormulaInputComponent implements OnInit, OnDestroy {
 
       return this.myControl.value.replace(match, ' ') + operator;
 
-    } else {
+     } else {
 
       return this.myControl.value + operator;
 
-    }
+     }
   }
-
 
   ngOnInit() {
 
